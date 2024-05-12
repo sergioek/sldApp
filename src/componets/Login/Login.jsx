@@ -31,6 +31,7 @@ export default function Login() {
       )
       .required("La contraseña es requerida"),
   });
+  
   return (
     <div className="bg-[url('/img/fondo.png')] bg-cover w-auto  h-screen" >
       <div className="flex min-h-full flex-1 flex-col justify-center px-6  lg:px-8 py-6">

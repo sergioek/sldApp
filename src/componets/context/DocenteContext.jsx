@@ -9,6 +9,7 @@ export const useDocenteContext = () => {
   return useContext(ContextDocente);
 };
 
+
 export const DocenteContext = ({ children }) => {
 
   const [ArrayDocentes, setArrayDocentes] = useState([]);

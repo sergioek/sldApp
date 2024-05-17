@@ -6,21 +6,16 @@ import {BtnAdd} from "../Btn/BtnAdd";
 import axios from "axios";
 import { alert } from "../Alerts/Alert";
 import { useNavigate } from "react-router-dom";
+import { FaInfoCircle,FaRegEdit,FaRegTrashAlt ,FaBriefcase , FaRegNewspaper   } from "react-icons/fa";
 
 export const TableDocentes = () => {
-  const { ArrayDocentes,autorization,allDocentes } = useDocenteContext();
+  const { ArrayDocentes,autorization,allDocentes} = useDocenteContext();
   const [select,setSelect] = useState({
     option:null,
     id:null,
   });
 const navigate = useNavigate()
 
-  const optionsFunction = (option,id)=>{
-    setSelect({
-      option:option,
-      id:id
-    })
-  }
 
   const deleteDocente = (id)=>{
     axios.delete("http://127.0.0.1:8000/api/v1/docentes/"+id,{
@@ -33,7 +28,7 @@ const navigate = useNavigate()
         title: "Exito!!",
         text: "Se eliminó un docente",
       })
-
+      allDocentes();
     }).catch((errors)=>{
       alert({
         icon: "error",
@@ -44,20 +39,14 @@ const navigate = useNavigate()
   }
 
 
-  useEffect(()=>{
+  const editar = (id)=>{
+    navigate("/docente-editar/"+id);
+  }
 
-    if(select.option =="eliminar"){
-        deleteDocente(select.id)
-        allDocentes();
 
-    }
-
-    if(select.option =="editar"){
-      navigate("/docente-editar/"+select.id);
-    }
-    
-
-  },[select])
+  const obligaciones = (id)=>{
+    navigate("/obligaciones/"+id)
+  }
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-4 mx-2 h-full">
@@ -116,27 +105,27 @@ const navigate = useNavigate()
                 <td className="px-6 ">{docente.tel}</td>
 
                 <td className="px-6 ">
-                  <div className="relative">
-                    <select name="options" className="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-                    onChange={(e)=>{
-                      optionsFunction(e.target.value,docente.id)
-                    }}
-                    >
-                      <option value="">Selecciona una opción</option>
-                      <option value="editar">Editar</option>
-                      <option value="eliminar">Eliminar</option>
-                      <option value="obligaciones">Obligaciones</option>
-                      <option value="licencias">Licencias</option>
-                    </select>
-                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                      <svg
-                        className="fill-current h-4 w-4"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M10 12l-6-6 1.41-1.41L10 9.17l4.59-4.58L16 6z" />
-                      </svg>
-                    </div>
+                <div className="flex gap-4">
+                    <button title="Obligaciones" onClick={()=>{
+                      obligaciones(docente.id)
+                    }}>
+                      <FaBriefcase className=" text-amber-950 text-lg"/>
+                    </button>
+
+                    <button title="Licencias">
+                      <FaRegNewspaper className=" text-violet-700 text-lg"/>
+                    </button>
+                     
+                    <button title="Editar" onClick={()=>{
+                      editar(docente.id)
+                    }}>
+                      <FaRegEdit className=" text-green-700 text-lg"/>
+                    </button>
+                    <button title="Eliminar" onClick={()=>{
+                      deleteDocente(docente.id)
+                    }}>
+                      <FaRegTrashAlt className=" text-red-700 text-lg" />
+                    </button>
                   </div>
                 </td>
               </tr>

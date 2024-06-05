@@ -4,19 +4,36 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { ShowPassword } from "./ShowPassword";
 import { useLoginContext } from "../context/LoginContext";
+import classNames from "classnames";
+import {alert} from "../Alerts/Alert"
 
 export default function Login() {
   const [Show, setShow] = useState("password");
   const navigate = useNavigate();
-  const {loginUser,UserName} = useLoginContext();
+  const {loginUser,UserName,btnLogin,setBtnLogin} = useLoginContext();
 
+  const buttonLogin = classNames(
+    "flex w-full justify-center rounded-md bg-violet-900 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600",{
+      "bg-violet-500": btnLogin== true
+    }
+  )
 
   useEffect(()=>{
+    if(btnLogin==false){
+      alert({
+        icon:"error",
+        title:"No se pudo iniciar sesión",
+        text:"El correo o la contraseña son incorrectos"
+      })
+    
+    }
+   
+  
    const session = sessionStorage.getItem("sessionActive") 
    if(session || UserName!== null){
       navigate("/docentes")
     }
-  },[UserName])
+  },[UserName,btnLogin])
 
 
   const Schema = Yup.object().shape({
@@ -54,6 +71,7 @@ export default function Login() {
             }}
             onSubmit={(values) => {
               loginUser(values);
+              setBtnLogin(true)
             }}
 
             validationSchema={Schema}
@@ -116,9 +134,12 @@ export default function Login() {
                 <div>
                   <button
                     type="submit"
-                    className="flex w-full justify-center rounded-md bg-violet-900 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+                    className={buttonLogin}
                   >
-                    Iniciar sesion
+                    {
+                      btnLogin == false || btnLogin == null ? "Iniciar Sesión" : "Ingresando..."
+                    }
+                    
                   </button>
                 </div>
               </form>

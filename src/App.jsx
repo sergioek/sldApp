@@ -10,7 +10,8 @@ import { ItemNuevoDocente } from "./componets/Docentes/Nuevo/ItemNuevoDocente";
 import { ItemEditarDocente } from "./componets/Docentes/Editar/ItemEditarDocente";
 import { ItemListObligaciones } from "./componets/Obligaciones/ItemListObligaciones";
 import { ObligacionesContext } from "./componets/context/ObligacionesContext";
-
+import { ItemNuevaObligacion } from "./componets/Obligaciones/Nuevo/ItemNuevaObligacion";
+import { ItemEditarObligacion } from "./componets/Obligaciones/Editar/ItemEditarObligacion";
 
 function App() {
   return (
@@ -33,6 +34,9 @@ function App() {
 
             <Route path="/obligaciones/:idDocente" element={<ItemListObligaciones/>}/>
 
+            <Route path="/obligacion-nueva/:idDocente" element={<ItemNuevaObligacion/>} />
+
+            <Route path="/obligacion-editar/:idObligacion" element={<ItemEditarObligacion/>}/>
           </Routes>
 
         </BrowserRouter>

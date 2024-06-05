@@ -4,18 +4,19 @@ import { Search } from "./Search";
 import { useDocenteContext } from "../context/DocenteContext";
 import {BtnAdd} from "../Btn/BtnAdd";
 import axios from "axios";
-import { alert } from "../Alerts/Alert";
+import { toastifyAlert, alert } from "../Alerts/Alert";
 import { useNavigate } from "react-router-dom";
 import { FaInfoCircle,FaRegEdit,FaRegTrashAlt ,FaBriefcase , FaRegNewspaper   } from "react-icons/fa";
 
 export const TableDocentes = () => {
   const { ArrayDocentes,autorization,allDocentes} = useDocenteContext();
-  const [select,setSelect] = useState({
-    option:null,
-    id:null,
-  });
+
+
 const navigate = useNavigate()
 
+  useEffect(()=>{
+    toastifyAlert()
+  },[])
 
   const deleteDocente = (id)=>{
     axios.delete("http://127.0.0.1:8000/api/v1/docentes/"+id,{
@@ -50,7 +51,7 @@ const navigate = useNavigate()
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-4 mx-2 h-full">
-      <BtnAdd url={"/docente-nuevo"}/>
+      <BtnAdd url={"/docente-nuevo"} name={"Nuevo Docente"}/>
       <div className="flex items-center justify-end px-2 flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
         <label htmlFor="table-search" className="sr-only">
           Search

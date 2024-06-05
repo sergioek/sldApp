@@ -16,6 +16,8 @@ export const LoginContext = ({ children }) => {
   });
 
   const [UserName,setUserName]=useState(sessionStorage.getItem("sessionActive"));
+
+  const [btnLogin, setBtnLogin] = useState(null)
   
   const loginUser = (values) => {
     axios
@@ -30,12 +32,11 @@ export const LoginContext = ({ children }) => {
         }
         setLogged(data)
         sessionStorage.setItem('sessionActive',JSON.stringify(data))
-
         setUserName(JSON.stringify(data))
 
       })
       .catch(function (error) {
-        console.log(error);
+        setBtnLogin(false)
       });
   };
 
@@ -52,7 +53,7 @@ export const LoginContext = ({ children }) => {
  
 
   return (
-  <CartContext.Provider value={{loginUser,Logged,logoutUser,UserName}}>
+  <CartContext.Provider value={{loginUser,Logged,logoutUser,UserName,btnLogin,setBtnLogin}}>
     {children}
   </CartContext.Provider>);
 };

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDocenteContext } from "../context/DocenteContext";
 import {BtnAdd} from "../Btn/BtnAdd";
 import axios from "axios";
-import { alert } from "../Alerts/Alert";
-import { useNavigate, useParams } from "react-router-dom";
+import { alert, toastifyAlert } from "../Alerts/Alert";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import ContactList from "./ContactList";
 import { UseHookObligaciones } from "../hooks/UseHookObligaciones";
 import { useObligacionesContext } from "../context/ObligacionesContext";
@@ -15,33 +15,35 @@ export const TableObligaciones = () => {
     const {obligaciones,allObligaciones,showObligacion,formData,docente} = useObligacionesContext();
     const {autorization}=useDocenteContext()
 
-    const [state,setState]=useState(null)
+    const [stateTrash,setStateTrash]=useState(null)
 
     useEffect(()=>{
+        toastifyAlert()
         allObligaciones(idDocente)
         if(formData !== null){
           mostrarDialog(formData)
           
         }
-    },[idDocente,formData,state])
+    },[idDocente,formData,stateTrash])
 
 
-  const show = (id)=>{
-    showObligacion(id)
+  const show = (idObligacion)=>{
+    showObligacion(idObligacion)
   }
 
-  const trash = (id)=>{
-    axios.delete("http://127.0.0.1:8000/api/v1/obligaciones/" + id, {
+  const trash = (idObligacion)=>{
+    axios.delete("http://127.0.0.1:8000/api/v1/obligaciones/" + idObligacion, {
       headers: {
         Authorization: `Bearer ${autorization()}`,
       },
     }).then((response)=>{
+      console.log(response)
       alert({
         icon:"success",
         title:"Exito!!",
         text:"Se eliminó una obligación"
       })
-      setState(true)
+      setStateTrash(idObligacion)
     }).catch((errors)=>{
       alert({
         icon:"error",
@@ -55,7 +57,7 @@ export const TableObligaciones = () => {
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-4 mx-2 h-full">
        <ContactList docente={docente}/> 
-      <BtnAdd url={"/docente-nuevo"}/>
+      <BtnAdd url={"/obligacion-nueva/"+idDocente} name={"Nueva Obligación"}/>
 
 
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -76,15 +78,7 @@ export const TableObligaciones = () => {
             </th>
 
             <th scope="col" className="px-6 py-3">
-              Espacio
-            </th>
-
-            <th scope="col" className="px-6 py-3">
-              Curso
-            </th>
-
-            <th scope="col" className="px-6 py-3">
-              Division
+              CUPOF
             </th>
 
             <th scope="col" className="px-6 py-3">
@@ -110,11 +104,8 @@ export const TableObligaciones = () => {
                  <td className="px-6 ">{obligacion.cargo}</td>
                  <td className="px-6 ">{obligacion.caracter}</td>
                  <td className="px-6 ">{obligacion.turno}</td>
-                 <td className="px-6 ">{obligacion.espacio}</td>
+                 <td className="px-6 ">{obligacion.cupof}</td>
 
-                 <td className="px-6 ">{obligacion.curso}</td>
-
-                 <td className="px-6 ">{obligacion.division}</td>
                  <td className="px-6 ">{obligacion.horas}</td>
  
                  <td className="px-2 ">
@@ -124,9 +115,13 @@ export const TableObligaciones = () => {
                     }}>
                       <FaInfoCircle className=" text-blue-700 text-lg"/>
                     </button>
+
+                    <NavLink to={"/obligacion-editar/"+obligacion.id}>
                     <button title="Editar">
                       <FaRegEdit className=" text-green-700 text-lg"/>
                     </button>
+                    </NavLink>
+
                     <button title="Eliminar" onClick={()=>{
                       trash(obligacion.id)
                     }}>

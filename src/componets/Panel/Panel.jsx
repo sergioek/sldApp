@@ -5,15 +5,18 @@ import { useNavigate } from 'react-router-dom'
 import { useLoginContext } from '../context/LoginContext'
 
 export const Panel = ({children}) => {
-  const {UserName} = useLoginContext();
+  const {UserName,Logged} = useLoginContext();
 
   const navigate = useNavigate();
+  
   useEffect(()=>{
     
-    if(UserName == null){
+    const session = sessionStorage.getItem("sessionActive") 
+
+    if(UserName == null || session == null || Logged == null  ){
        navigate("/")
      }
-   },[UserName])
+   },[UserName,Logged])
  
   return (
     <div className='h-screen w-auto'>

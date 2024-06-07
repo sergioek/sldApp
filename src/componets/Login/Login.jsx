@@ -10,7 +10,7 @@ import {alert} from "../Alerts/Alert"
 export default function Login() {
   const [Show, setShow] = useState("password");
   const navigate = useNavigate();
-  const {loginUser,UserName,btnLogin,setBtnLogin} = useLoginContext();
+  const {loginUser,UserName,btnLogin,setBtnLogin,Logged} = useLoginContext();
 
   const buttonLogin = classNames(
     "flex w-full justify-center rounded-md bg-violet-900 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600",{
@@ -19,7 +19,7 @@ export default function Login() {
   )
 
   useEffect(()=>{
-    if(btnLogin==false){
+    if(Logged==null){
       alert({
         icon:"error",
         title:"No se pudo iniciar sesión",
@@ -28,12 +28,11 @@ export default function Login() {
     
     }
    
-  
    const session = sessionStorage.getItem("sessionActive") 
    if(session || UserName!== null){
       navigate("/docentes")
     }
-  },[UserName,btnLogin])
+  },[UserName,Logged])
 
 
   const Schema = Yup.object().shape({
@@ -135,6 +134,7 @@ export default function Login() {
                   <button
                     type="submit"
                     className={buttonLogin}
+                    disabled={btnLogin}
                   >
                     {
                       btnLogin == false || btnLogin == null ? "Iniciar Sesión" : "Ingresando..."

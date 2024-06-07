@@ -116,7 +116,7 @@ export const TableObligaciones = () => {
                       <FaInfoCircle className=" text-blue-700 text-lg"/>
                     </button>
 
-                    <NavLink to={"/obligacion-editar/"+obligacion.id}>
+                    <NavLink to={"/obligacion-editar/"+obligacion.id+"/docente/"+obligacion.docente_id}>
                     <button title="Editar">
                       <FaRegEdit className=" text-green-700 text-lg"/>
                     </button>

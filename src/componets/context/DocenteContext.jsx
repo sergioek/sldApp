@@ -19,7 +19,11 @@ export const DocenteContext = ({ children }) => {
 
 
   const autorization = () => {
-    return JSON.parse(sessionStorage.getItem("sessionActive")).token;
+    let sessionLocal= JSON.parse(sessionStorage.getItem("sessionActive"))
+    if(sessionLocal !== null){
+      return sessionLocal.token;
+    }
+    
   };
 
   const change = (value) => {

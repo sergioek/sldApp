@@ -19,6 +19,9 @@ export const LoginContext = ({ children }) => {
 
   const [btnLogin, setBtnLogin] = useState(null)
   
+
+  
+
   const loginUser = (values) => {
     axios
       .post("http://127.0.0.1:8000/api/v1/login", values)
@@ -36,7 +39,8 @@ export const LoginContext = ({ children }) => {
 
       })
       .catch(function (error) {
-        setBtnLogin(false)
+        setLogged(null)
+        setBtnLogin(null);
       });
   };
 
@@ -48,6 +52,7 @@ export const LoginContext = ({ children }) => {
       token_type:null})
       sessionStorage.removeItem("sessionActive")
       setUserName(null);
+      setBtnLogin(null);
     }
 
  

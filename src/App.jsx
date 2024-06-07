@@ -36,7 +36,7 @@ function App() {
 
             <Route path="/obligacion-nueva/:idDocente" element={<ItemNuevaObligacion/>} />
 
-            <Route path="/obligacion-editar/:idObligacion" element={<ItemEditarObligacion/>}/>
+            <Route path="/obligacion-editar/:idObligacion/docente/:idDocente" element={<ItemEditarObligacion/>}/>
           </Routes>
 
         </BrowserRouter>

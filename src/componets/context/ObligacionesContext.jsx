@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useDocenteContext } from "./DocenteContext";
 import { useNavigate } from "react-router-dom";
+import { useLoginContext } from "./LoginContext";
 
 const ContextObligaciones = createContext();
 
@@ -10,9 +11,9 @@ export const useObligacionesContext = () => {
 };
 
 export const ObligacionesContext = ({ children }) => {
-const {autorization}=useDocenteContext()
+const {autorization}=useLoginContext()
+const {showDocente} = useDocenteContext();
 const [obligaciones,setObligaciones] = useState([]);
-const [docente,setDocente] = useState(null);
 const [formData, setFormData] = useState(null);
 const [inputDisabledDefault,setInputDisabledDefault]= useState(true);
 
@@ -64,20 +65,7 @@ const [horariosDefault,setHorariosDefault] = useState([])
         console.log(errors);
       });
 
-      axios
-      .get("http://127.0.0.1:8000/api/v1/docentes/" + idDocente, {
-        headers: {
-          Authorization: `Bearer ${autorization()}`,
-        },
-      })
-      .then((response) => {
-        setDocente(response.data.data)
-        console.log(response.data.data)
-      })
-      .catch((errors) => {
-        console.log(errors);
-      });
-      
+      showDocente(idDocente);
   };
 
 
@@ -149,7 +137,7 @@ const [horariosDefault,setHorariosDefault] = useState([])
 
 
   return (
-    <ContextObligaciones.Provider value={{allObligaciones,obligaciones,showObligacion,formData,docente,divisiones,allCargos,cargos,allEspacios,espacios,editObligacion,obligacion,horariosDefault,setHorariosDefault,inputDisabledDefault,setInputDisabledDefault}}>
+    <ContextObligaciones.Provider value={{allObligaciones,obligaciones,showObligacion,formData,divisiones,allCargos,cargos,allEspacios,espacios,editObligacion,obligacion,horariosDefault,setHorariosDefault,inputDisabledDefault,setInputDisabledDefault}}>
       {children}
     </ContextObligaciones.Provider>
   );

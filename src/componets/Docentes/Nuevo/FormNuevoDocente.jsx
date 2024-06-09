@@ -5,9 +5,10 @@ import { alert } from "../../Alerts/Alert";
 import axios from "axios";
 import { BtnGuardar } from "../../Btn/BtnGuardar";
 import "../../../assets/css/forms.css";
+import { useLoginContext } from "../../context/LoginContext";
 
 export const FormNuevoDocente = () => {
-  const { autorization } = useDocenteContext();
+  const { autorization } = useLoginContext();
 
   const Schema = Yup.object().shape({
     apellidos: Yup.string().required("Campo requerido"),

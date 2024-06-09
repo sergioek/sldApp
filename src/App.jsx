@@ -1,4 +1,3 @@
-
 import "./App.css";
 import Login from "./componets/Login/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -12,35 +11,54 @@ import { ItemListObligaciones } from "./componets/Obligaciones/ItemListObligacio
 import { ObligacionesContext } from "./componets/context/ObligacionesContext";
 import { ItemNuevaObligacion } from "./componets/Obligaciones/Nuevo/ItemNuevaObligacion";
 import { ItemEditarObligacion } from "./componets/Obligaciones/Editar/ItemEditarObligacion";
+import { ItemListLicencias } from "./componets/Licencias/ItemListLicencias";
+import { LicenciaContext } from "./componets/context/LicenciaContext";
 
 function App() {
   return (
     <>
       <LoginContext>
-      <DocenteContext>
-        <ObligacionesContext>
-        <BrowserRouter>
-          <Routes>
-            
-            <Route path="/" element={<Login />} />
-            
-            <Route path="/registro" element={<Registro />} />
-            
-            <Route path="/docentes" element={<ItemListDocentes />} />
-            
-            <Route path="/docente-nuevo" element={<ItemNuevoDocente/>}/>            
-            
-            <Route path="/docente-editar/:id" element={<ItemEditarDocente/>} />
+        <DocenteContext>
+          <ObligacionesContext>
+            <LicenciaContext>
+              <BrowserRouter>
+                <Routes>
+                  <Route path="/" element={<Login />} />
 
-            <Route path="/obligaciones/:idDocente" element={<ItemListObligaciones/>}/>
+                  <Route path="/registro" element={<Registro />} />
 
-            <Route path="/obligacion-nueva/:idDocente" element={<ItemNuevaObligacion/>} />
+                  <Route path="/docentes" element={<ItemListDocentes />} />
 
-            <Route path="/obligacion-editar/:idObligacion/docente/:idDocente" element={<ItemEditarObligacion/>}/>
-          </Routes>
+                  <Route path="/docente-nuevo" element={<ItemNuevoDocente />} />
 
-        </BrowserRouter>
-        </ObligacionesContext>
+                  <Route
+                    path="/docente-editar/:id"
+                    element={<ItemEditarDocente />}
+                  />
+
+                  <Route
+                    path="/obligaciones/:idDocente"
+                    element={<ItemListObligaciones />}
+                  />
+
+                  <Route
+                    path="/obligacion-nueva/:idDocente"
+                    element={<ItemNuevaObligacion />}
+                  />
+
+                  <Route
+                    path="/obligacion-editar/:idObligacion/docente/:idDocente"
+                    element={<ItemEditarObligacion />}
+                  />
+
+                  <Route
+                    path="/licencias/:idDocente"
+                    element={<ItemListLicencias />}
+                  />
+                </Routes>
+              </BrowserRouter>
+            </LicenciaContext>
+          </ObligacionesContext>
         </DocenteContext>
       </LoginContext>
     </>

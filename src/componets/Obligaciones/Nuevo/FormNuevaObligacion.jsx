@@ -8,6 +8,7 @@ import { alert } from "../../Alerts/Alert";
 import axios from "axios";
 import { useDocenteContext } from "../../context/DocenteContext";
 import "../../../assets/css/forms.css";
+import { useLoginContext } from "../../context/LoginContext";
 
 export const FormNuevaObligacion = () => {
   const { idDocente } = useParams();
@@ -48,7 +49,7 @@ export const FormNuevaObligacion = () => {
   const { divisiones, cargos, allCargos, allEspacios, espacios } =
     useObligacionesContext();
   const navigate = useNavigate();
-  const { autorization } = useDocenteContext();
+  const { autorization } = useLoginContext();
 
   useEffect(() => {
     allCargos();

@@ -6,9 +6,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BtnGuardar } from "../../Btn/BtnGuardar";
+import { useLoginContext } from "../../context/LoginContext";
 
 export const FormEditarDocente = () => {
-  const { autorization } = useDocenteContext();
+  const { autorization } = useLoginContext();
 
   const { id } = useParams();
   const [docente, setDocente] = useState(null);

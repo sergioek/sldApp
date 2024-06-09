@@ -7,9 +7,11 @@ import axios from "axios";
 import { toastifyAlert, alert } from "../Alerts/Alert";
 import { useNavigate } from "react-router-dom";
 import { FaInfoCircle,FaRegEdit,FaRegTrashAlt ,FaBriefcase , FaRegNewspaper   } from "react-icons/fa";
+import { useLoginContext } from "../context/LoginContext";
 
 export const TableDocentes = () => {
-  const { ArrayDocentes,autorization,allDocentes} = useDocenteContext();
+  const { ArrayDocentes,allDocentes} = useDocenteContext();
+  const {autorization} = useLoginContext();
 
 
 const navigate = useNavigate()
@@ -49,6 +51,10 @@ const navigate = useNavigate()
     navigate("/obligaciones/"+id)
   }
 
+  const licencias = (id)=>{
+    navigate ("/licencias/"+id)
+  }
+  
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-4 mx-2 h-full">
       <BtnAdd url={"/docente-nuevo"} name={"Nuevo Docente"}/>
@@ -113,7 +119,9 @@ const navigate = useNavigate()
                       <FaBriefcase className=" text-amber-950 text-lg"/>
                     </button>
 
-                    <button title="Licencias">
+                    <button title="Licencias" onClick={()=>{
+                      licencias(docente.id)
+                    }}>
                       <FaRegNewspaper className=" text-violet-700 text-lg"/>
                     </button>
                      

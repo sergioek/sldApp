@@ -4,16 +4,18 @@ import {BtnAdd} from "../Btn/BtnAdd";
 import axios from "axios";
 import { alert, toastifyAlert } from "../Alerts/Alert";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-import ContactList from "./ContactList";
+import ContactList from "../Panel/ContactList";
 import { UseHookObligaciones } from "../hooks/UseHookObligaciones";
 import { useObligacionesContext } from "../context/ObligacionesContext";
 import { mostrarDialog } from "../Alerts/Alert";
 import { FaInfoCircle,FaRegEdit,FaRegTrashAlt    } from "react-icons/fa";
+import { useLoginContext } from "../context/LoginContext";
 
 export const TableObligaciones = () => {
     const {idDocente} = useParams()
-    const {obligaciones,allObligaciones,showObligacion,formData,docente} = useObligacionesContext();
-    const {autorization}=useDocenteContext()
+    const {obligaciones,allObligaciones,showObligacion,formData} = useObligacionesContext();
+    const {docente} = useDocenteContext();
+    const {autorization}=useLoginContext();
 
     const [stateTrash,setStateTrash]=useState(null)
 

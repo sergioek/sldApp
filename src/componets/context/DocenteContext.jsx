@@ -16,15 +16,9 @@ export const DocenteContext = ({ children }) => {
   const [links, setLinks] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [data,setData]=useState({});
+  const [docente,setDocente] = useState(null);
+  const {autorization} = useLoginContext();
 
-
-  const autorization = () => {
-    let sessionLocal= JSON.parse(sessionStorage.getItem("sessionActive"))
-    if(sessionLocal !== null){
-      return sessionLocal.token;
-    }
-    
-  };
 
   const change = (value) => {
     if (value === "&laquo; Previous") {
@@ -41,6 +35,23 @@ export const DocenteContext = ({ children }) => {
       allDocentes();
     }
   }, [currentPage]);
+
+
+  const showDocente = (idDocente) =>{
+    axios
+    .get("http://127.0.0.1:8000/api/v1/docentes/" + idDocente, {
+      headers: {
+        Authorization: `Bearer ${autorization()}`,
+      },
+    })
+    .then((response) => {
+      setDocente(response.data.data)
+     
+    })
+    .catch((errors) => {
+      console.log(errors);
+    });
+  }
 
   const allDocentes = () => {
     axios
@@ -91,8 +102,9 @@ export const DocenteContext = ({ children }) => {
         setCurrentPage,
         allDocentes,
         change,
-        autorization,
-        data
+        data,
+        showDocente,
+        docente
       }}
     >
       {children}

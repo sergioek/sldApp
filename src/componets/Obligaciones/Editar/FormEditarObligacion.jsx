@@ -8,6 +8,7 @@ import { alert } from "../../Alerts/Alert";
 import axios from "axios";
 import { useDocenteContext } from "../../context/DocenteContext";
 import "../../../assets/css/forms.css";
+import { useLoginContext } from "../../context/LoginContext";
 
 export const FormEditarObligacion = () => {
   const { idObligacion, idDocente } = useParams();
@@ -26,7 +27,7 @@ export const FormEditarObligacion = () => {
   } = useObligacionesContext();
   const horariosSemana = horariosDefault;
   const navigate = useNavigate();
-  const { autorization } = useDocenteContext();
+  const { autorization } = useLoginContext();
 
   useEffect(() => {
     editObligacion(idObligacion);

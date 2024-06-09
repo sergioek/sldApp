@@ -20,7 +20,12 @@ export const LoginContext = ({ children }) => {
   const [btnLogin, setBtnLogin] = useState(null)
   
 
-  
+  const autorization = () => {
+    let sessionLocal= JSON.parse(sessionStorage.getItem("sessionActive"))
+    if(sessionLocal !== null){
+      return sessionLocal.token;
+    }
+  };
 
   const loginUser = (values) => {
     axios
@@ -58,7 +63,7 @@ export const LoginContext = ({ children }) => {
  
 
   return (
-  <CartContext.Provider value={{loginUser,Logged,logoutUser,UserName,btnLogin,setBtnLogin}}>
+  <CartContext.Provider value={{autorization,loginUser,Logged,logoutUser,UserName,btnLogin,setBtnLogin}}>
     {children}
   </CartContext.Provider>);
 };

@@ -111,3 +111,83 @@ export const mostrarDialog = (formData) => {
     confirmButtonText: "Aceptar",
   });
 };
+
+
+export const mostrarLicencia = (formData) => {
+  Swal.fire({
+    title: '<span style="color: blue;">Información de Licencia</span>',
+    html: `
+      <div style="display: flex; flex-wrap: wrap;">
+        <div style="padding: 0.5rem;">
+          <label style="font-weight: bold; display: inline;">ID:</label>
+          <input type="text" style="padding-left:0.2rem" value="${formData.id}" disabled />
+        </div>
+        <div style=" padding: 0.5rem;">
+          <label style="font-weight: bold; display: inline;">Cargo:</label>
+          <input type="text" style="padding-left:0.2rem" value="${formData.cargo}" disabled />
+        </div>
+
+        <div style=" padding: 0.5rem;">
+          <label style="font-weight: bold; display: inline;">Carácter:</label>
+          <input type="text" style="padding-left:0.2rem" value="${formData.caracter}" disabled />
+        </div>
+        <div style=" padding: 0.5rem;">
+          <label style="font-weight: bold; display: inline;">Artículo:</label>
+          <input type="text" style="padding-left:0.2rem" value="${formData.articulo}" disabled />
+        </div>
+          <div style=" padding: 0.5rem;">
+          <label style="font-weight: bold; display: inline;">Denominación:</label>
+          <input type="text" style="padding-left:0.2rem" value="${formData.denominacion}" disabled />
+        </div>
+        <div style=" padding: 0.5rem;">
+          <label style="font-weight: bold; display: inline;">Fecha de inicio:</label>
+          <input type="date" style="padding-left:0.2rem" value="${formData.finicio}" disabled />
+        </div>
+        <div style=" padding: 0.5rem;">
+          <label style="font-weight: bold; display: inline;">Fecha de cierre:</label>
+          <input type="date" style="padding-left:0.2rem" value="${formData.ffinal}" disabled />
+        </div>
+        <div style=" padding: 0.5rem;">
+          <label style="font-weight: bold; display: inline;">Expediente:</label>
+          <input type="text" style="padding-left:0.2rem" value="${formData.expediente !== null ? formData.expediente : " "}" disabled />
+        </div>
+        <div style=" padding: 0.5rem;">
+          <label style="font-weight: bold; display: inline;">Dias:</label>
+          <input type="text" style="padding-left:0.2rem" value="${formData.dias}" disabled />
+        </div>
+        <div style=" padding: 0.5rem;">
+          <label style="font-weight: bold; display: inline;">Cant. de Obligaciones:</label>
+          <input type="text" style="padding-left:0.2rem" value="${formData.obligacionesAfectadas}" disabled />
+        </div>
+        <div style=" padding: 0.5rem;">
+          <label style="font-weight: bold; display: inline;">Documentación:</label>
+          <input type="text" style="padding-left:0.2rem" value="${formData.documentacion}" disabled />
+        </div>
+        <div style=" padding: 0.5rem;">
+          <label style="font-weight: bold; display: inline;">Injustificada:</label>
+          <input type="text" style="padding-left:0.2rem" value="${formData.injustificada}" disabled />
+        </div>
+        <div style=" padding: 0.5rem;">
+          <label style="font-weight: bold; display: inline;">Total de Haberes:</label>
+          <input type="text" style="padding-left:0.2rem" value="${formData.totalHaberes}" disabled />
+        </div>
+        <div style=" padding: 0.5rem;">
+          <label style="font-weight: bold; display: inline;">Desc. Presentismo:</label>
+          <input type="text" style="padding-left:0.2rem" value="${formData.descuentoPresentismo}" disabled />
+        </div>
+
+        <div style=" padding: 0.5rem;">
+          <label style="font-weight: bold; display: inline;">Número de control:</label>
+          <input type="text" style="padding-left:0.2rem" value="${formData.numeroControl}" disabled />
+        </div>
+ 
+        <div style=" padding: 0.5rem;">
+          <label style="font-weight: bold; display: inline;">Observaciones</label>
+          <input type="text" style="padding-left:0.2rem" value="${formData.observaciones !== null ? formData.observaciones : " "}" disabled />
+        </div>
+        
+      </div>
+    `,
+    confirmButtonText: "Aceptar",
+  });
+};

@@ -13,11 +13,11 @@ import { useLicenciaContext } from "../context/LicenciaContext";
 import moment from 'moment';
 import { useLoginContext } from "../context/LoginContext";
 import { Filter } from "./Filter";
-
+import Pagination from "./Pagination";
 
 export const TableLicencias = () => {
     const {idDocente} = useParams()
-    const {allLicencias,licencias}= useLicenciaContext();
+    const {allLicencias,licencias,currentPage}= useLicenciaContext();
     const {showDocente,docente} = useDocenteContext();
     const {autorization} = useLoginContext();
     const [stateTrash,setStateTrash]=useState(null)
@@ -27,7 +27,7 @@ export const TableLicencias = () => {
         allLicencias(idDocente)
         showDocente(idDocente)
 
-    },[idDocente,stateTrash])
+    },[idDocente,stateTrash,currentPage])
 
 
   const show = (licencia)=>{
@@ -60,7 +60,7 @@ export const TableLicencias = () => {
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-4 mx-2 h-full">
        <ContactList docente={docente}/> 
-      <BtnAdd url={"/obligacion-nueva/"+idDocente} name={"Nueva Licencia"}/>
+      <BtnAdd url={"/licencia-nueva/"+idDocente} name={"Nueva Licencia"}/>
       <Filter/>
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-slate-100 uppercase bg-green-900">
@@ -130,11 +130,6 @@ export const TableLicencias = () => {
                    <FaInfoCircle className=" text-blue-700 text-lg"/>
                  </button>
 
-                 <NavLink to={"/obligacion-editar/"+licencia.id+"/docente/"+licencia.docente_id}>
-                 <button title="Editar">
-                   <FaRegEdit className=" text-green-700 text-lg"/>
-                 </button>
-                 </NavLink>
 
                  <button title="Eliminar" onClick={()=>{
                    trash(licencia.id)
@@ -145,11 +140,13 @@ export const TableLicencias = () => {
               </td>
             </tr>
         
-             ))) : <p className="px-4 py-4 text-red-500">Sin resultados en la búsqueda</p>}
+             ))) : <tr>
+                <td className="px-4 py-4 text-red-500">Sin resultados en la búsqueda</td>
+              </tr>}
             
         </tbody>
       </table>
-    
+    <Pagination/>
     </div>
   );
 };

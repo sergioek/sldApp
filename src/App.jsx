@@ -12,7 +12,10 @@ import { ObligacionesContext } from "./componets/context/ObligacionesContext";
 import { ItemNuevaObligacion } from "./componets/Obligaciones/Nuevo/ItemNuevaObligacion";
 import { ItemEditarObligacion } from "./componets/Obligaciones/Editar/ItemEditarObligacion";
 import { ItemListLicencias } from "./componets/Licencias/ItemListLicencias";
+import {ItemNuevaLicencia} from "./componets/Licencias/Nuevo/ItemNuevaLicencia";
 import { LicenciaContext } from "./componets/context/LicenciaContext";
+import { ItemListReportes } from "./componets/Reportes/ItemListReportes";
+
 
 function App() {
   return (
@@ -55,7 +58,12 @@ function App() {
                     path="/licencias/:idDocente"
                     element={<ItemListLicencias />}
                   />
+                  <Route path="/licencia-nueva/:idDocente" element={<ItemNuevaLicencia/>} />
+                  
+                  <Route path="/reportes" element={<ItemListReportes/>} />
                 </Routes>
+
+       
               </BrowserRouter>
             </LicenciaContext>
           </ObligacionesContext>

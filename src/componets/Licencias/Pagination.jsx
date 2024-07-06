@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom";
-import { useDocenteContext } from "../context/DocenteContext";
+import { useLicenciaContext } from "../context/LicenciaContext";
 
 
 export default function Pagination() {
-  const { links, change, data} =
-    useDocenteContext();
+  const { links, change, data} = useLicenciaContext()
 
-    
 
   const changePage = (value) => {
+    console.log(value)
     change(value)
   };
 

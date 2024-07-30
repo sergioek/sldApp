@@ -64,6 +64,7 @@ export const DocenteContext = ({ children }) => {
         setArrayDocentes(response.data.data.data);
         setLinks(response.data.data.links);
         setData(response.data.data)
+        console.log(response.data.data.data);
       })
       .catch((error) => {
         console.log(error);

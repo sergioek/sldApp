@@ -81,10 +81,6 @@ const [horariosDefault,setHorariosDefault] = useState([])
       response.data.data[0],
       
      )
-
-  
-
-
        
     }).catch((errors)=>{
       console.log(errors)

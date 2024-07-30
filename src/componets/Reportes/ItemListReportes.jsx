@@ -8,15 +8,11 @@ import { useLoginContext } from '../context/LoginContext'
 
  export const ItemListReportes = () => {
   
-
    return (
     
-        <div>
-            {/* <FilterReporte/> */}
-
-            <Planilla />
-  
-        </div>
+        <Panel>
+          <TablePDF/>
+        </Panel> 
    
    )
  }

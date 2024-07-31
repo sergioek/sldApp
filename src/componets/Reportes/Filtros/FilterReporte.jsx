@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import moment from "moment";
 import { FaFilePdf } from "react-icons/fa6";
-export const FilterReporte = ({ reporteLicencias }) => {
+export const FilterReporte = ({ reporteLicencias, reportePresentismo }) => {
   const [inicio, setInicio] = useState(moment().format("YYYY-MM-DD"));
   const [final, setFinal] = useState(moment().format("YYYY-MM-DD"));
 
@@ -17,6 +17,8 @@ export const FilterReporte = ({ reporteLicencias }) => {
             if (e.target.selectReporte.value == "A2") {
               reporteLicencias(inicio, final);
             } else {
+
+              reportePresentismo(inicio, final);
             }
           }}
         >

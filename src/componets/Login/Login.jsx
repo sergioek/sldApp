@@ -97,7 +97,7 @@ export default function Login() {
                     />
                   </div>
                   {errors.email && (
-                    <p className=" text-red-600">{errors.email}</p>
+                    <p className=" text-red-600 text-xs mt-4 font-bold">{errors.email}</p>
                   )}
                 </div>
 
@@ -126,7 +126,7 @@ export default function Login() {
                   </div>
 
                   {errors.password && (
-                    <p className=" text-red-600">{errors.password}</p>
+                    <p className=" text-red-600 text-xs mt-4 font-bold">{errors.password}</p>
                   )}
                 </div>
 
@@ -148,7 +148,7 @@ export default function Login() {
 
           <p className="mt-10 text-center text-sm text-slate-950">
             No estas registrado?{" "}
-            <Link to="/registro" className="font-semibold leading-6 text-red-600 ">Registrate aquí</Link>
+            <Link to="/registro" className="font-semibold leading-6 text-purple-950">Registrate aquí</Link>
 
           </p>
         </div>

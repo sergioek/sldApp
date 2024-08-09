@@ -117,7 +117,7 @@ export const mostrarLicencia = (formData) => {
   Swal.fire({
     title: '<span style="color: blue;">Información de Licencia</span>',
     html: `
-      <div style="display: flex; flex-wrap: wrap;">
+      <div style="display: flex; flex-wrap: wrap">
         <div style="padding: 0.5rem;">
           <label style="font-weight: bold; display: inline;">ID:</label>
           <input type="text" style="padding-left:0.2rem" value="${formData.id}" disabled />
@@ -137,7 +137,7 @@ export const mostrarLicencia = (formData) => {
         </div>
           <div style=" padding: 0.5rem;">
           <label style="font-weight: bold; display: inline;">Denominación:</label>
-          <input type="text" style="padding-left:0.2rem" value="${formData.denominacion}" disabled />
+          <input type="text" style="padding-left:0.2rem; width:18rem;" value="${formData.denominacion}" disabled />
         </div>
         <div style=" padding: 0.5rem;">
           <label style="font-weight: bold; display: inline;">Fecha de inicio:</label>

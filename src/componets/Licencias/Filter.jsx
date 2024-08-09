@@ -21,7 +21,7 @@ export const Filter = () => {
         e.preventDefault()
         searchLicencias(idDocente,desdeFecha,hastaFecha)
     }}>
-    <div className="pt-9 pb-4 px-4 flex justify-end items-center gap-4">
+    <div className="m-4 flex justify-end items-center gap-4">
       <span className=" font-bold">Filtros:</span>
       <input
         type="date"

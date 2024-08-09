@@ -57,6 +57,7 @@ export const TableLicencias = () => {
 
   }
 
+
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-4 mx-2 h-full">
        <ContactList docente={docente}/> 

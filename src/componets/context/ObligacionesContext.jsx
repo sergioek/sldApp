@@ -60,7 +60,7 @@ const [horariosDefault,setHorariosDefault] = useState([])
       })
       .then((response) => {
         setObligaciones(response.data.data)
-        
+        console.log(response.data.data)
       })
       .catch((errors) => {
         console.log(errors);

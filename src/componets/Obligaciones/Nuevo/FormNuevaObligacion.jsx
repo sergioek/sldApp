@@ -257,6 +257,7 @@ export const FormNuevaObligacion = () => {
                     onChange={handleChange}
                     value={values.division}
                   >
+                    <option value="">Seleccionar</option>
                     {divisiones.map((division) => (
                       <option value={division.campo} key={division.id}>
                         {division.campo}

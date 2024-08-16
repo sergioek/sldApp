@@ -6,7 +6,7 @@ export const FilterReporte = ({ reporteLicencias, reportePresentismo }) => {
   const [final, setFinal] = useState(moment().format("YYYY-MM-DD"));
 
   return (
-    <div className="flex justify-center my-40 h-full">
+    <div className="flex justify-center my-40 h-screen">
       <div>
         <h2 className="mb-10 font-serif text-3xl text-blue-800">
           Reportes de Licencias

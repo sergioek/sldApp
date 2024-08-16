@@ -252,14 +252,30 @@ export const FormNuevaLicencia = () => {
                     }}
                   />
 
-                  <label htmlFor={obligacion.id} className="ml-2 text-gray-700">
-                    {obligacion.cargo + " - " + obligacion.caracter + " - Turno: " + obligacion.turno }
+                  {
+                    obligacion.espacio !== null ?
+                    
+                    <label htmlFor={obligacion.id} className="ml-2 text-gray-700">
+
+                    {obligacion.cargo + " - " + obligacion.caracter + " - Turno: " + obligacion.turno +  " - Espacio: " + obligacion.espacio + " de " +obligacion.curso + obligacion.division }
+                   
                     {
                       obligacion.horas !== null && " - (" +obligacion.horas + " hs)"
                     }
 
                   </label>
                 
+                    :
+
+                    <label htmlFor={obligacion.id} className="ml-2 text-gray-700">
+
+                      {obligacion.cargo + " - " + obligacion.caracter + " - Turno: " + obligacion.turno}
+
+                    </label>
+
+
+                  }
+                  
                   <div>
                   {
                     obligacion.cargo === "Catedrático/a" &&
